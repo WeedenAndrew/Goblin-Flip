@@ -1,0 +1,77 @@
+name: goblin_flip
+description: A fantasy coin-flip game built with Flutter.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  audioplayers: 6.6.0
+  crypto: 3.0.7
+  flutter_secure_storage: 10.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/backgrounds/forest_option_4_green.png
+    - assets/backgrounds/forest_backdrop_v2.png
+    - assets/backgrounds/table_foreground_v2.png
+    - assets/characters/goblin_gambler_v4.png
+    - assets/ui/skins/
+    - assets/icons/wizard_powerups.png
+    - assets/coins/king_engraving.png
+    - assets/coins/goblin_engraving.png
+    - assets/coins/wager_pile_single.png
+    - assets/coins/wager_pile_25.png
+    - assets/coins/wager_pile_50.png
+    - assets/coins/wager_pile_75.png
+    - assets/coins/wager_pile_all_in.png
+    - assets/audio/forest_pathway_reel_1.mp3
+    - assets/fonts/cinzel/OFL.txt
+    - assets/fonts/cinzel_decorative/OFL.txt
+    - assets/fonts/almendra/OFL.txt
+
+  fonts:
+    - family: Cinzel
+      fonts:
+        - asset: assets/fonts/cinzel/static/Cinzel-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/cinzel/static/Cinzel-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/cinzel/static/Cinzel-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/cinzel/static/Cinzel-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/cinzel/static/Cinzel-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/cinzel/static/Cinzel-Black.ttf
+          weight: 900
+    - family: Cinzel Decorative
+      fonts:
+        - asset: assets/fonts/cinzel_decorative/CinzelDecorative-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/cinzel_decorative/CinzelDecorative-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/cinzel_decorative/CinzelDecorative-Black.ttf
+          weight: 900
+    - family: Almendra
+      fonts:
+        - asset: assets/fonts/almendra/Almendra-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/almendra/Almendra-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/almendra/Almendra-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/almendra/Almendra-BoldItalic.ttf
+          weight: 700
+          style: italic

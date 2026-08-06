@@ -1,0 +1,6 @@
+# Copy this file to android/key.properties after creating the release keystore.
+# key.properties is ignored by Git; never commit the real passwords or key file.
+storePassword=replace-me
+keyPassword=replace-me
+keyAlias=goblin-flip-upload
+storeFile=C:\\absolute\\path\\to\\goblin-flip-upload-keystore.jks

@@ -1,0 +1,53 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/settings.local.json
+*.iml
+*.ipr
+*.iws
+*.swp
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+secrets.*
+
+# Dart and Flutter output
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+tmp/
+**/doc/api/
+**/ios/Flutter/.last_build_id
+
+# Local Android configuration and signing material
+/android/.gradle/
+/android/.kotlin/
+/android/local.properties
+/android/key.properties
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+*.jks
+*.keystore
+
+# Generated Apple-platform files
+ios/Flutter/ephemeral/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+ios/.symlinks/
+ios/DerivedData/
+
+# Release diagnostics
+*.log
+app.*.symbols
+app.*.map.json
