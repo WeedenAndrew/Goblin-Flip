@@ -1,6 +1,6 @@
 # Goblin Flip
 
-Goblin Flip is a fantasy coin-flip game built with Flutter. Players build a
+Goblin Flip is a fantasy coinflip game built with Flutter. Players build a
 balance of flips, unlock a goblin gambler, place wagers,
 and buy charms that alter future outcomes. Flips have no cash value and cannot
 be transferred or redeemed.
@@ -54,4 +54,4 @@ local persistence, automated tests, and Android build pipeline are working.
 Production purchases, rewarded ads, store publication, and Apple-device
 validation remain on the roadmap.
 
-Copyright © 2026 Andrew Weeden. All rights reserved. See [LICENSE](LICENSE).
+Copyright © 2026 WeedenAndrew. All rights reserved. See [LICENSE](LICENSE).
