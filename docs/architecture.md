@@ -28,6 +28,8 @@ external commerce providers.
 ## Presentation modules
 
 - `game_scene.dart`: layers the forest, goblin, table, coin, menus, and effects.
+- `visual_skins.dart`: the single edit point for swappable surface artwork,
+  panel insets, and text colors.
 - `audio_controls.dart`: the scene-level music and goblin-voice mute control.
 - `coin_effects.dart`: coin rendering, wager piles, counter, and rollback haze.
 - `goblin_overlays.dart`: goblin introduction and recovery overlays.

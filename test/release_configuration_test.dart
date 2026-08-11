@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -76,12 +77,48 @@ void main() {
         'Install Android APK.cmd',
         'Run Goblin Flip.cmd',
         'Test Goblin Flip.cmd',
+        'docs/architecture.md',
+        'docs/commerce_security.md',
+        'docs/release_readiness.md',
+        'web/index.html',
+        'web/manifest.json',
       ];
 
       for (final path in publicFiles) {
         final contents = File(path).readAsStringSync();
         expect(contents, isNot(contains(r'C:\Users\')));
         expect(contents, isNot(contains('dart.flutterSdkPath')));
+      }
+    });
+
+    test('the web preview carries project identity, not template text', () {
+      final page = File('web/index.html').readAsStringSync();
+      final rawManifest = File('web/manifest.json').readAsStringSync();
+
+      for (final scaffolding in <String>[page, rawManifest]) {
+        expect(scaffolding, isNot(contains('A new Flutter project')));
+        expect(scaffolding, isNot(contains('com.example')));
+        // The package name is lowercase with an underscore; the public-facing
+        // name is 'Goblin Flip'.
+        expect(scaffolding, isNot(contains('goblin_flip')));
+      }
+      expect(page, contains('<title>Goblin Flip (development preview)</title>'));
+
+      final manifest =
+          jsonDecode(rawManifest) as Map<String, Object?>;
+      expect(manifest['name'], 'Goblin Flip');
+      expect(manifest['short_name'], 'Goblin Flip');
+
+      final icons = manifest['icons']! as List<Object?>;
+      expect(icons, isNotEmpty);
+      for (final entry in icons) {
+        final icon = entry! as Map<String, Object?>;
+        final source = icon['src']! as String;
+        expect(
+          File('web/$source').existsSync(),
+          isTrue,
+          reason: '$source is referenced by the manifest but is not on disk.',
+        );
       }
     });
 

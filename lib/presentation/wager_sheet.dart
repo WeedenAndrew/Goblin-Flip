@@ -280,6 +280,12 @@ class _QuickBetButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // '25%' alone tells a screen reader nothing about what it wagers. The label
+    // and the selected flag go on the node the button merges, so the name and
+    // the selection are announced together.
+    final semanticLabel = label == 'All in'
+        ? 'Wager the entire balance'
+        : 'Wager $label of the balance';
     return FilledButton(
       onPressed: onPressed,
       style: FilledButton.styleFrom(
@@ -299,7 +305,15 @@ class _QuickBetButton extends StatelessWidget {
           fontWeight: FontWeight.w900,
         ),
       ),
-      child: FittedBox(fit: BoxFit.scaleDown, child: Text(label, maxLines: 1)),
+      child: Semantics(
+        label: semanticLabel,
+        selected: selected,
+        excludeSemantics: true,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(label, maxLines: 1),
+        ),
+      ),
     );
   }
 }
@@ -337,7 +351,12 @@ class _WagerSideButton extends StatelessWidget {
           fontWeight: FontWeight.w900,
         ),
       ),
-      child: Text(label),
+      child: Semantics(
+        label: 'Wager on $label',
+        selected: selected,
+        excludeSemantics: true,
+        child: Text(label),
+      ),
     );
   }
 }

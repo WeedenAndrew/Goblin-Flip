@@ -30,6 +30,21 @@ Current safeguards:
 - iOS release and profile builds include the keychain entitlement required by the
   secure-storage layer.
 
+## Web preview scope
+
+`Run Goblin Flip.cmd` builds the Chrome preview for layout debugging and asset
+review. It is a development surface only and must not be published.
+
+The browser has no Keystore or Keychain equivalent, so the HMAC integrity key
+that `docs/commerce_security.md` depends on would sit in browser storage
+alongside the ledger it is meant to protect. Android and iOS remain the only
+release targets, because there `flutter_secure_storage` is backed by real
+platform key storage.
+
+`test/asset_manifest_test.dart` covers the mechanical asset failures the preview
+was otherwise used to catch, so the preview is only needed to judge how artwork
+actually looks.
+
 ## Play Store bundle
 
 `Build Play Bundle.cmd` creates the `.aab` required by Google Play, but refuses

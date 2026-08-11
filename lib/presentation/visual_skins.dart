@@ -1,3 +1,8 @@
+// This registry exists to hold artwork parameters before any artwork uses
+// them, so [_SurfaceArtwork]'s optional fields stay unset until a PNG skin is
+// added. That is the documented extension point, not dead code.
+// ignore_for_file: unused_element_parameter
+
 part of '../goblin_flip_app.dart';
 
 /// Artwork and layout are deliberately separate from interaction logic.

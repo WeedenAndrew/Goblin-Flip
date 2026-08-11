@@ -14,7 +14,8 @@ be transferred or redeemed.
 - Insurance, Roll Back Time, and Speed Flip charms
 - Authenticated local saves with rollback and replay protection
 - Responsive layouts for Android phones and the web preview
-- Automated gameplay, persistence, security, and release tests
+- Screen-reader labels and larger-text layouts for the wager and charm menus
+- Automated gameplay, persistence, security, accessibility, and release tests
 
 ## Development
 
@@ -29,15 +30,20 @@ flutter run
 
 Windows helpers are included for running the web preview, testing, building an
 Android APK, installing it on a connected phone, and producing a signed Android
-App Bundle.
+App Bundle. The Chrome preview is a debugging and asset-review tool; Android and
+iOS are the only release targets.
 
 ## Structure
 
 - `lib/game_state.dart` contains the game rules and persistent state model.
 - `lib/game_state_store.dart` protects local saves and recovery copies.
 - `lib/presentation/` contains the scene, controls, effects, and menus.
+- `lib/audio/` owns playback policy and the procedural interaction cues.
+- `lib/commerce_catalog.dart` and the purchase, ad, and receipt-validation files
+  define the store boundary that release builds require.
 - `test/` covers gameplay transitions, persistence attacks, commerce receipts,
-  responsive layouts, and release configuration.
+  responsive and large-text layouts, screen-reader labels, asset and font
+  bundling, and release configuration.
 
 Real purchases and rewarded ads remain disabled in release builds until their
 store providers and verification service are configured. See

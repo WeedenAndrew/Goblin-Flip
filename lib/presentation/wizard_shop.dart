@@ -47,24 +47,34 @@ class _PowerupSheet extends StatelessWidget {
                             ),
                           ),
                         ),
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: const Color(0x594A6B6F),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: const Color(0x80516E70)),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 9,
-                              vertical: 5,
+                        // Flexible + scaleDown so a doubled text scale shrinks
+                        // the chip instead of overflowing the header row.
+                        Flexible(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: const Color(0x594A6B6F),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: const Color(0x80516E70),
+                              ),
                             ),
-                            child: Text(
-                              'Balance ${state.flipBalance}',
-                              key: const Key('wizard-balance'),
-                              style: _GameFonts.almendra(
-                                color: skin.secondaryTextColor,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w700,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 9,
+                                vertical: 5,
+                              ),
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  'Balance ${state.flipBalance}',
+                                  key: const Key('wizard-balance'),
+                                  maxLines: 1,
+                                  style: _GameFonts.almendra(
+                                    color: skin.secondaryTextColor,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -74,7 +84,7 @@ class _PowerupSheet extends StatelessWidget {
                           key: const Key('close-powerups'),
                           onPressed: () => Navigator.of(context).pop(),
                           color: const Color(0xFF4A2E19),
-                          tooltip: 'Close',
+                          tooltip: 'Close Wizard\'s Charms',
                           icon: const Icon(Icons.close),
                         ),
                       ],
@@ -175,6 +185,10 @@ class _PowerupRuleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // A bare 'Buy' repeated three times does not say which charm it buys.
+    final actionSemanticLabel = enabled
+        ? 'Buy $title for $priceLabel'
+        : '$title: $actionLabel';
     return DecoratedBox(
       decoration: BoxDecoration(
         color: const Color(0x8FFFF1C5),
@@ -231,13 +245,21 @@ class _PowerupRuleCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 9),
-                        Text(
-                          progressLabel ?? '',
-                          key: const Key('insurance-progress-label'),
-                          style: _GameFonts.cinzel(
-                            color: const Color(0xFF3F2B1B),
-                            fontSize: 10,
-                            fontWeight: FontWeight.w900,
+                        // The caption shrinks rather than pushing the coverage
+                        // bar off the card at a doubled text scale.
+                        Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              progressLabel ?? '',
+                              key: const Key('insurance-progress-label'),
+                              maxLines: 1,
+                              style: _GameFonts.cinzel(
+                                color: const Color(0xFF3F2B1B),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -272,7 +294,11 @@ class _PowerupRuleCard extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                           ),
                         ),
-                        child: Text(actionLabel),
+                        child: Semantics(
+                          label: actionSemanticLabel,
+                          excludeSemantics: true,
+                          child: Text(actionLabel),
+                        ),
                       ),
                     ],
                   ),
